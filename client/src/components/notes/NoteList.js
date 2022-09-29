@@ -1,7 +1,7 @@
 import { ListGroup, Container } from 'react-bootstrap';
 import NoteShow from './NoteShow';
 
-const NoteList = ({ notes }) => (
+const NoteList = ({ notes, catId }) => (
   <Container>
     <h1>All Notes</h1>
     <ListGroup variant="flush">
@@ -9,6 +9,7 @@ const NoteList = ({ notes }) => (
         <NoteShow 
           key={n.id}
           {...n}
+          catId
         /> 
       )}   
     </ListGroup>

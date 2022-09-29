@@ -10,7 +10,7 @@ const NoteProvider = ({ children }) => {
   const [notes, setNotes] = useState([])
   const [errors, setErrors] = useState(null)
   const navigate = useNavigate()
-  
+
   const getAllNotes = (catId) => {
     axios.get(`/api/cats/${catId}/notes`)
       .then( res => setNotes(res.data))
@@ -43,6 +43,8 @@ const NoteProvider = ({ children }) => {
           return n
         })
         setNotes(newUpdatedNotes)
+        navigate(`/${catId}/notes`)
+        window.location.reload()
       })
       .catch(err => {
         setErrors({ 

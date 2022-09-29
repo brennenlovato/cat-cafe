@@ -1,10 +1,13 @@
 import { NoteConsumer } from "../../providers/NoteProvider"
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import NoteList from './NoteList';
+import { Button, Modal } from 'react-bootstrap';
+import NoteForm from './NoteForm';
 
 const Notes = ({ notes, getAllNotes }) => {
   const { catId } = useParams();
+  const [adding, setAdd] = useState(false)
 
   useEffect( () => {
     getAllNotes(catId)
@@ -12,8 +15,24 @@ const Notes = ({ notes, getAllNotes }) => {
 
   return (
     <>
+      <Button variant="primary" onClick={() => setAdd(true)}>
+        +
+      </Button>
+
+      <Modal show={adding} onHide={() => setAdd(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Add Note</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <NoteForm 
+            setAdd={setAdd}
+            catId={catId}
+          />
+        </Modal.Body>
+      </Modal>
       <NoteList 
         notes={notes}
+        catId={catId}
       />
     </>
   )
