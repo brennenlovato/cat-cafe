@@ -9,7 +9,7 @@ const NoteList = ({ notes, catId }) => (
         <NoteShow 
           key={n.id}
           {...n}
-          catId
+          catId={catId}
         /> 
       )}   
     </ListGroup>

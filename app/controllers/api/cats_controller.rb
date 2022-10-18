@@ -34,8 +34,8 @@ class Api::CatsController < ApplicationController
     render json: { message: 'Cat Released'}
   end
 
-  def randomcats
-    render json: Cat.all.sample
+  def randomcats 
+    render json: Cat.all.sample 
   end
 
   private 
